@@ -19,12 +19,15 @@ Where αt is the alpha for a given layer t in the Target Network and σ(wt) is t
 
 We do retraining after pruning each layer. Once, an episode finishes, the original model is loaded again to start the next episode. Once, all the episodes are finished, the final compression rates per layer are obtained. We then prune the Target Network with these compression rates and finetune it to report the final accuracy of our pruned model.
 
+Full paper to be released soon.
+
 ## FLOPs Calculation
 For calculating the number of parameters in our network, we follow the guidelines provided. I.e. we count the total number of parameters remaining after pruning and use a 16bit size (as per the freebie quantization guidelines given) to calculate the size of the parameters. We also add on the size of the weight mask used for pruning. For the weight mask size we take all the parameters in the starting model and multiply it by 1bit (the size to denote mask information per parameter). We then add the weight mask size and the size of remaining parameters to get the total number of parameters in our model.
 
 For flops, we calculate flops on a per layer basis. We calculate flops on the remaining weights after pruning. We calculate multiply operations as 16bit and add operations as 32bit. We then add together the multiply and adds per layer and do it for each layer. Adding together the flops for each layer gives us the total number of flops for the whole model. 
 
 **We achieve xx Params and xx Flops on CIFAR100 leading to a score of xx**
+
 **We achieve xx Params and xx Flops on ImageNet leading to a score of xx**
 
 We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The instruction for running the script are provided below.
