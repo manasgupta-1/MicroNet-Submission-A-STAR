@@ -33,7 +33,12 @@ For flops, we calculate flops on a per layer basis. We calculate flops on the re
 We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The instruction for running the script are provided below.
 
 ## Running the script 
-Run xx file with yy arguments
+Evaluate WideResNet-28-10 for CIFAR100-
+
+```
+python test.py --wideresnet -e --resume /path/to/checkpoint.pth --batch-size 128 /path/to/data/directory 
+```
+Evaluate EfficientNet-B2 for ImageNet-
 
 ```
 python test.py --wideresnet -e --resume /path/to/checkpoint.pth --batch-size 128 /path/to/data/directory 
