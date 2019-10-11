@@ -36,5 +36,5 @@ We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2
 Run xx file with yy arguments
 
 ```
-python test.py --checkpoint='Path/to/checkpoint.pth'
+python test.py --wideresnet -e --resume /path/to/checkpoint.pth --batch-size 128 /path/to/data/directory 
 ```
