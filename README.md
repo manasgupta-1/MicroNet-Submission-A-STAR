@@ -4,7 +4,7 @@ We compress our network using Weight Pruning. We use a Reinforcement Learning (R
 
 **We achieve a score of xx on CIFAR100 and xx on ImageNet**
 
-## Our Algorithm
+## AutoPrune Algorithm
 We formulate pruning a Neural Network as a Markov Decision Process (MDP). Our AutoPrune algorithm maintains a representation of the network being pruned, which is called the ‘state’. For each layer of the network to be pruned or the target network, AutoPrune gives us a compression rate α by which we prune that layer. Once, the layer is pruned, a reward is returned back to AutoPrune, to let it know whether the compression rate was good or not. Processing all the layers in the target network in this way, is called an episode. AutoPrune trains itself on a specified number of episodes, and learns a unique compression ratio for each layer in the network in the end. 
 
 We use Deep Q-learning as our underlying RL algorithm due to its fast learning speed. Our method is different from past RL based pruning algorithms, notably AMC by (He et al., 2018) in many aspects, one of them being by giving dense rewards to the agent rather than sparse rewards. Our reward function comprises of two terms, a sparsity penalty and an accuracy penalty, where a baseline sparsity target and baseline accuracy target is set by the user. 
