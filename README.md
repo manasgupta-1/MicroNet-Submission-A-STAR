@@ -2,7 +2,7 @@
 
 We compress our network using Weight Pruning. We use a Reinforcement Learning (RL) based pruning algorithm, the AutoPrune algorithm, to prune a pre-trained Neural Network. Specifically, we prune each layer of a target network using a compression rate given to us by the RL agent. Our AutoPrune algorithm co-optimizes for a target accuracy and a target sparsity ratio. We do fine-tuning for a few epochs once the pruning process finishes. 
 
-**We achieve a score of 0.1118 on CIFAR100 and 0.0.8281 on ImageNet**
+**We achieve a score of 0.1118 on CIFAR100 and 0.8281 on ImageNet**
 
 ## AutoPrune Algorithm
 We formulate pruning a Neural Network as a Markov Decision Process (MDP). Our AutoPrune algorithm maintains a representation of the network being pruned, which is called the ‘state’. For each layer of the network to be pruned or the target network, AutoPrune gives us a compression rate α by which we prune that layer. Once, the layer is pruned, a reward is returned back to AutoPrune, to let it know whether the compression rate was good or not. Processing all the layers in the target network in this way, is called an episode. AutoPrune trains itself on a specified number of episodes, and learns a unique compression ratio for each layer in the network in the end. 
@@ -28,7 +28,7 @@ For flops, we calculate flops on a per layer basis. We calculate flops on the re
 
 **We achieve 0.0618 Params and 0.0500 Flops on CIFAR100 leading to a score of 0.1118**
 
-**We achieve 0.3097 Params and 0.5184 Flops on ImageNet leading to a score of 0.8280**
+**We achieve 0.3097 Params and 0.5184 Flops on ImageNet leading to a score of 0.8281**
 
 We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The weight mask for CIFAR100 can be downloaded [here](https://www.dropbox.com/s/yukl4s01yz08bcy/weightsmasks_wideresnet.bin?dl=0) and for ImageNet [here](https://www.dropbox.com/s/qp56t84p712y7ku/weightsmasks_effnetB2.bin?dl=0). 
 
