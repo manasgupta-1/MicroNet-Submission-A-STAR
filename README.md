@@ -9,11 +9,11 @@ We formulate pruning a Neural Network as a Markov Decision Process (MDP). Our Au
 
 We use Deep Q-learning as our underlying RL algorithm due to its fast learning speed. Our method is different from past RL based pruning algorithms, notably AMC by (He et al., 2018) in many aspects, one of them being by giving dense rewards to the agent rather than sparse rewards. Our reward function comprises of two terms, a sparsity penalty and an accuracy penalty, where a baseline sparsity target and baseline accuracy target is set by the user. 
 
-*Reward(R) ~= Min(Current Accuracy – Target Accuracy, 0) + Min(Current Sparsity – Target Sparsity, 0)*
+*Reward(R) $\approx$ Min(Current Accuracy – Target Accuracy, 0) + Min(Current Sparsity – Target Sparsity, 0)*
 
 In this way, AutoPrune co-optimizes for sparsity and accuracy at each layer. The compression rate α given by AutoPrune does magnitude pruning on the network (Han et al., 2015). Specifically, the magnitude threshold for pruning each layer is calculated as-
 
-*Pruning Threshold = αt σ(wt)*
+*Pruning Threshold = $\alpha_t$ σ(wt)*
 
 Where αt is the alpha for a given layer t in the Target Network and σ(wt) is the standard deviation of the weights for the layer t. This prunes all the connections in the layer which are below the magnitude threshold. We search for α over a given range of discrete standard deviation values i.e. α ∈ {1.0, 1.2, ···, 2.2}.
 
@@ -33,19 +33,15 @@ For flops, we calculate flops on a per layer basis. We calculate flops on the re
 We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The weight mask for CIFAR100 can be downloaded [here](https://www.dropbox.com/s/yukl4s01yz08bcy/weightsmasks_wideresnet.bin?dl=0) and for ImageNet [here](https://www.dropbox.com/s/qp56t84p712y7ku/weightsmasks_effnetB2.bin?dl=0). 
 
 ## Running the script 
-###Evaluate WideResNet-28-10 for CIFAR100:
+### Evaluate WideResNet-28-10 for CIFAR100:
 
-Download [checkpoint](https://www.dropbox.com/s/93qviwvwb9hwfe4/wideresnet_pruned_model.pth.tar?dl=0).
-
-Then run the command-
+Download [checkpoint](https://www.dropbox.com/s/93qviwvwb9hwfe4/wideresnet_pruned_model.pth.tar?dl=0). Then run the command-
 ```
 python test_wideresnet.py --checkpoint-path /path/to/checkpoint.pth.tar /path/to/data/directory 
 ```
-###Evaluate EfficientNet-B2 for ImageNet:
+### Evaluate EfficientNet-B2 for ImageNet:
 
-Download [checkpoint](https://www.dropbox.com/s/kfjsqyobdfpu5ss/EffnetB2_pruned_model.pth.tar?dl=0).
-
-Then run the command-
+Download [checkpoint](https://www.dropbox.com/s/kfjsqyobdfpu5ss/EffnetB2_pruned_model.pth.tar?dl=0). Then run the command-
 ```
 python test_effnet.py --checkpoint-path /path/to/checkpoint.pth.tar /path/to/data/directory 
 ```
