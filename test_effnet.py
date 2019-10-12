@@ -207,7 +207,7 @@ def main_worker(gpu, ngpus_per_node, args):
 		val_loader = torch.utils.data.DataLoader(
 			datasets.ImageFolder(valdir, transforms.Compose([
 				transforms.Resize(image_size, interpolation=PIL.Image.BICUBIC),
-				transforms.CenterCrop(224),
+				transforms.CenterCrop(image_size),
 				transforms.ToTensor(),
 				normalize,
 			])),
