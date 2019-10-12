@@ -2,7 +2,7 @@
 
 We compress our network using Weight Pruning. We use a Reinforcement Learning (RL) based pruning algorithm, the AutoPrune algorithm, to prune a pre-trained Neural Network. Specifically, we prune each layer of a target network using a compression rate given to us by the RL agent. Our AutoPrune algorithm co-optimizes for a target accuracy and a target sparsity ratio. We do fine-tuning for a few epochs once the pruning process finishes. 
 
-**We achieve a score of 0.1058 on CIFAR100 and 0.8933 on ImageNet**
+**We achieve a score of 0.1118 on CIFAR100 and 0.8933 on ImageNet**
 
 ## AutoPrune Algorithm
 We formulate pruning a Neural Network as a Markov Decision Process (MDP). Our AutoPrune algorithm maintains a representation of the network being pruned, which is called the ‘state’. For each layer of the network to be pruned or the target network, AutoPrune gives us a compression rate α by which we prune that layer. Once, the layer is pruned, a reward is returned back to AutoPrune, to let it know whether the compression rate was good or not. Processing all the layers in the target network in this way, is called an episode. AutoPrune trains itself on a specified number of episodes, and learns a unique compression ratio for each layer in the network in the end. 
@@ -26,7 +26,7 @@ For calculating the number of parameters in our network, we follow the guideline
 
 For flops, we calculate flops on a per layer basis. We calculate flops on the remaining weights after pruning. We calculate multiply operations as 16bit and add operations as 32bit. We then add together the multiply and adds per layer and do it for each layer. Adding together the flops for each layer gives us the total number of flops for the whole model. 
 
-**We achieve 0.0618 Params and 0.0440 Flops on CIFAR100 leading to a score of 0.1058**
+**We achieve 0.0618 Params and 0.0500 Flops on CIFAR100 leading to a score of 0.1118**
 
 **We achieve 0.3541 Params and 0.5392 Flops on ImageNet leading to a score of 0.8933**
 
