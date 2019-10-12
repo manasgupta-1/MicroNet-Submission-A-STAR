@@ -153,11 +153,7 @@ def main_worker(gpu, ngpus_per_node, args):
 		model = model.cuda(args.gpu)
 	else:
 		# DataParallel will divide and allocate batch_size to all available GPUs
-		if args.arch.startswith('alexnet') or args.arch.startswith('vgg'):
-			model.features = torch.nn.DataParallel(model.features)
-			model.cuda()
-		else:
-			model = torch.nn.DataParallel(model).cuda()
+		model = torch.nn.DataParallel(model).cuda()
 
 	# define loss function (criterion) and optimizer
 	criterion = nn.CrossEntropyLoss().cuda(args.gpu)
