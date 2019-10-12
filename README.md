@@ -36,10 +36,10 @@ We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2
 Evaluate WideResNet-28-10 for CIFAR100:
 
 ```
-python test_wideresnet.py --checkpoint-path /path/to/checkpoint.pth /path/to/data/directory 
+python test_wideresnet.py --checkpoint-path /path/to/checkpoint.pth.tar /path/to/data/directory 
 ```
 Evaluate EfficientNet-B2 for ImageNet:
 
 ```
-python test_effnet.py --checkpoint-path /path/to/checkpoint.pth /path/to/data/directory 
+python test_effnet.py --checkpoint-path /path/to/checkpoint.pth.tar /path/to/data/directory 
 ```
