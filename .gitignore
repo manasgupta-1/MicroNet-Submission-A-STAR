@@ -1,0 +1,11 @@
+*/*.pyc
+*/**/__pycache__
+*/**/*.pyc
+*/**/*.pyd
+*/**/**/*.pyc
+*/**/**/**/*.pyc
+*/**/**/**/**/*.pyc
+.ipynb_checkpoints
+.ipynb_checkpoints/*
+*.pyc
+*.pyd

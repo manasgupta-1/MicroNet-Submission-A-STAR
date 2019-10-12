@@ -2,7 +2,7 @@
 
 We compress our network using Weight Pruning. We use a Reinforcement Learning (RL) based pruning algorithm, the AutoPrune algorithm, to prune a pre-trained Neural Network. Specifically, we prune each layer of a target network using a compression rate given to us by the RL agent. Our AutoPrune algorithm co-optimizes for a target accuracy and a target sparsity ratio. We do fine-tuning for a few epochs once the pruning process finishes. 
 
-**We achieve a score of xx on CIFAR100 and xx on ImageNet**
+**We achieve a score of 0.1058 on CIFAR100 and 0.8933 on ImageNet**
 
 ## AutoPrune Algorithm
 We formulate pruning a Neural Network as a Markov Decision Process (MDP). Our AutoPrune algorithm maintains a representation of the network being pruned, which is called the ‘state’. For each layer of the network to be pruned or the target network, AutoPrune gives us a compression rate α by which we prune that layer. Once, the layer is pruned, a reward is returned back to AutoPrune, to let it know whether the compression rate was good or not. Processing all the layers in the target network in this way, is called an episode. AutoPrune trains itself on a specified number of episodes, and learns a unique compression ratio for each layer in the network in the end. 
@@ -26,20 +26,20 @@ For calculating the number of parameters in our network, we follow the guideline
 
 For flops, we calculate flops on a per layer basis. We calculate flops on the remaining weights after pruning. We calculate multiply operations as 16bit and add operations as 32bit. We then add together the multiply and adds per layer and do it for each layer. Adding together the flops for each layer gives us the total number of flops for the whole model. 
 
-**We achieve xx Params and xx Flops on CIFAR100 leading to a score of xx**
+**We achieve 0.0618 Params and 0.0440 Flops on CIFAR100 leading to a score of 0.1058**
 
-**We achieve xx Params and xx Flops on ImageNet leading to a score of xx**
+**We achieve 0.3541 Params and 0.5392 Flops on ImageNet leading to a score of 0.8933**
 
 We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The instruction for running the script are provided below.
 
 ## Running the script 
-Evaluate WideResNet-28-10 for CIFAR100-
+Evaluate WideResNet-28-10 for CIFAR100:
 
 ```
-python test.py --wideresnet -e --resume /path/to/checkpoint.pth --batch-size 128 /path/to/data/directory 
+python test_wideresnet.py --checkpoint-path /path/to/checkpoint.pth /path/to/data/directory 
 ```
-Evaluate EfficientNet-B2 for ImageNet-
+Evaluate EfficientNet-B2 for ImageNet:
 
 ```
-python test.py --wideresnet -e --resume /path/to/checkpoint.pth --batch-size 128 /path/to/data/directory 
+python test_effnet.py --checkpoint-path /path/to/checkpoint.pth /path/to/data/directory 
 ```
