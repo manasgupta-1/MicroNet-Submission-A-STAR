@@ -30,21 +30,20 @@ For flops, we calculate flops on a per layer basis. We calculate flops on the re
 
 **We achieve 0.3541 Params and 0.5393 Flops on ImageNet leading to a score of 0.8933**
 
-We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The instruction for running the script are provided below.
+We use WideResnet-28-10 as our starting network for CIFAR100 and EfficientNet-B2 for ImageNet. We include checkpoints of the pruned models for reference. We also include testing scripts to test the validation accuracy of the included checkpoints. The weight mask for CIFAR100 can be downloaded [here](https://www.dropbox.com/s/yukl4s01yz08bcy/weightsmasks_wideresnet.bin?dl=0) and for ImageNet [here](https://www.dropbox.com/s/qp56t84p712y7ku/weightsmasks_effnetB2.bin?dl=0). 
 
 ## Running the script 
-Evaluate WideResNet-28-10 for CIFAR100:
+###Evaluate WideResNet-28-10 for CIFAR100:
 
-Download checkpoint [here](https://www.dropbox.com/s/93qviwvwb9hwfe4/wideresnet_pruned_model.pth.tar?dl=0).
+Download [checkpoint](https://www.dropbox.com/s/93qviwvwb9hwfe4/wideresnet_pruned_model.pth.tar?dl=0).
 
 Then run the command-
 ```
 python test_wideresnet.py --checkpoint-path /path/to/checkpoint.pth.tar /path/to/data/directory 
 ```
-Evaluate EfficientNet-B2 for ImageNet:
+###Evaluate EfficientNet-B2 for ImageNet:
 
-
-Download checkpoint [here](https://www.dropbox.com/s/kfjsqyobdfpu5ss/EffnetB2_pruned_model.pth.tar?dl=0).
+Download [checkpoint](https://www.dropbox.com/s/kfjsqyobdfpu5ss/EffnetB2_pruned_model.pth.tar?dl=0).
 
 Then run the command-
 ```
